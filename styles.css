@@ -8,7 +8,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Playfair Display', serif;
 }
 
 body {
@@ -33,6 +33,7 @@ header {
 header h1 {
   color: var(--white);
   font-size: 1.8rem;
+  font-family: 'Playfair Display', serif;
 }
 
 nav a {
@@ -41,6 +42,7 @@ nav a {
   text-decoration: none;
   font-weight: 600;
   transition: color 0.3s;
+  font-family: 'Inter', sans-serif;
 }
 
 nav a:hover {
@@ -56,6 +58,7 @@ nav a:hover {
 .hero h2 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
+  font-family: 'Playfair Display', serif;
 }
 
 .hero p {
@@ -63,6 +66,7 @@ nav a:hover {
   max-width: 600px;
   margin: 0 auto;
   color: #333;
+  font-family: 'Inter', sans-serif;
 }
 
 .cta-button {
@@ -75,6 +79,7 @@ nav a:hover {
   border-radius: 8px;
   font-weight: 600;
   transition: background-color 0.3s;
+  font-family: 'Inter', sans-serif;
 }
 
 .cta-button:hover {
@@ -101,9 +106,21 @@ section.text-section.visible {
   transform: translateY(0);
 }
 
+section.text-section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+section.text-section p {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.05rem;
+}
+
 footer {
   background-color: var(--navy-blue);
   color: var(--white);
   padding: 1rem 2rem;
   text-align: center;
+  font-family: 'Inter', sans-serif;
 }
