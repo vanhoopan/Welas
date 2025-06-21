@@ -126,6 +126,14 @@ section.blue-bg {
   background-color: var(--soft-blue);
 }
 
+footer {
+  background-color: var(--navy-blue);
+  color: var(--white);
+  padding: 1rem 2rem;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+}
+
 .solutions-grid {
   display: flex;
   flex-wrap: wrap;
@@ -140,25 +148,30 @@ section.blue-bg {
   background-color: var(--white);
   padding: 2rem;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.07);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: left;
+}
+
+.solution-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.1);
 }
 
 .solution-box h3 {
   font-family: 'Playfair Display', serif;
-  font-size: 1.25rem;
+  font-size: 1.35rem;
   margin-bottom: 0.75rem;
+  color: var(--navy-blue);
 }
 
 .solution-box p {
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-family: 'Inter', sans-serif;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  color: #333;
 }
 
-footer {
-  background-color: var(--navy-blue);
-  color: var(--white);
-  padding: 1rem 2rem;
-  text-align: center;
-  font-family: 'Inter', sans-serif;
+.solution-box .cta-button.small {
+  margin-top: 0;
 }
