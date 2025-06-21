@@ -9,7 +9,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Cormorant Garamond', serif; /* Upgraded main font */
+  font-family: 'EB Garamond', serif; /* Default body font */
 }
 
 body {
@@ -34,7 +34,7 @@ header {
 header h1 {
   color: var(--white);
   font-size: 1.8rem;
-  font-family: 'Cormorant Garamond', serif; /* Matching header */
+  font-family: 'Perpetua', serif; /* Header font */
   font-weight: 600;
 }
 
@@ -44,7 +44,7 @@ nav a {
   text-decoration: none;
   font-weight: 600;
   transition: color 0.3s;
-  font-family: 'Montserrat', sans-serif; /* More refined sans-serif */
+  font-family: 'EB Garamond', serif;
 }
 
 nav a:hover {
@@ -60,7 +60,7 @@ nav a:hover {
 .hero h2 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Perpetua', serif; /* Header font */
   font-weight: 600;
 }
 
@@ -69,7 +69,7 @@ nav a:hover {
   max-width: 600px;
   margin: 0 auto;
   color: #333;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'EB Garamond', serif;
 }
 
 .cta-button {
@@ -110,14 +110,14 @@ section.text-section.visible {
 }
 
 section.text-section h2 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Perpetua', serif; /* Header font */
   font-size: 2rem;
   margin-bottom: 1rem;
   font-weight: 600;
 }
 
 section.text-section p {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'EB Garamond', serif;
   font-size: 1.05rem;
 }
 
@@ -165,7 +165,7 @@ footer {
 }
 
 .solution-box h3 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Perpetua', serif; /* Header font */
   font-size: 1.35rem;
   margin-bottom: 0.75rem;
   color: var(--navy-blue);
@@ -174,7 +174,7 @@ footer {
 
 .solution-box p {
   font-size: 1rem;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'EB Garamond', serif;
   margin-bottom: 1.5rem;
   color: var(--navy-blue);
 }
