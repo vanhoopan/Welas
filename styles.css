@@ -2,6 +2,7 @@
   --light-blue: #C4DDF2;
   --navy-blue: #003366;
   --white: #ffffff;
+  --soft-blue: #F2F7FB;
 }
 
 * {
@@ -94,7 +95,7 @@ nav a:hover {
 
 section.text-section {
   padding: 4rem 2rem;
-  max-width: 900px;
+  max-width: 1100px;
   margin: auto;
   opacity: 0;
   transform: translateY(40px);
@@ -115,6 +116,43 @@ section.text-section h2 {
 section.text-section p {
   font-family: 'Inter', sans-serif;
   font-size: 1.05rem;
+}
+
+section.light-bg {
+  background-color: var(--white);
+}
+
+section.blue-bg {
+  background-color: var(--soft-blue);
+}
+
+.solutions-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 2rem;
+  justify-content: space-between;
+}
+
+.solution-box {
+  flex: 1;
+  min-width: 280px;
+  background-color: var(--white);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.solution-box h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.solution-box p {
+  font-size: 0.95rem;
+  font-family: 'Inter', sans-serif;
+  margin-bottom: 1rem;
 }
 
 footer {
