@@ -9,7 +9,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Libre Baskerville', serif; /* Primary font (replaces FF Meta Serif) */
+  font-family: 'Libre Caslon Text', serif; /* CHANGED: Caslon replaces Libre Baskerville */
 }
 
 body {
@@ -34,7 +34,7 @@ header {
 header h1 {
   color: var(--white);
   font-size: 1.8rem;
-  font-family: 'Libre Baskerville', serif;
+  font-family: 'Libre Caslon Text', serif; /* CHANGED */
   font-weight: 700;
 }
 
@@ -44,7 +44,7 @@ nav a {
   text-decoration: none;
   font-weight: 600;
   transition: color 0.3s;
-  font-family: 'Inter', sans-serif; /* Secondary font (replaces Neue Haas Grotesk) */
+  font-family: 'Inter', sans-serif;
 }
 
 nav a:hover {
@@ -60,7 +60,7 @@ nav a:hover {
 .hero h2 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
-  font-family: 'Libre Baskerville', serif;
+  font-family: 'Libre Caslon Text', serif; /* CHANGED */
   font-weight: 700;
 }
 
@@ -110,7 +110,7 @@ section.text-section.visible {
 }
 
 section.text-section h2 {
-  font-family: 'Libre Baskerville', serif;
+  font-family: 'Libre Caslon Text', serif; /* CHANGED */
   font-size: 2rem;
   margin-bottom: 1rem;
   font-weight: 700;
@@ -165,7 +165,7 @@ footer {
 }
 
 .solution-box h3 {
-  font-family: 'Libre Baskerville', serif;
+  font-family: 'Libre Caslon Text', serif; /* CHANGED */
   font-size: 1.35rem;
   margin-bottom: 0.75rem;
   color: var(--navy-blue);
