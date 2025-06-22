@@ -188,3 +188,28 @@ footer {
 .solution-box .cta-button.small:hover {
   background-color: #002244;
 }
+
+.rotating-text {
+  position: relative;
+  height: 2.5rem;
+  margin-top: 1.5rem;
+  overflow: hidden;
+  font-family: 'Libre Caslon Text', serif;
+  font-size: 1.75rem;
+  color: var(--navy-blue);
+  font-weight: 700;
+}
+
+.rotating-text .word {
+  position: absolute;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: all 0.6s ease-in-out;
+  width: 100%;
+  text-align: center;
+}
+
+.rotating-text .word.active {
+  opacity: 1;
+  transform: translateY(0);
+}
