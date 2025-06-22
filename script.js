@@ -30,21 +30,18 @@ const revealOnScroll = () => {
 };
 
 const animateBackground = () => {
-  const scrollY = window.scrollY;
-  const stage1Trigger = window.innerHeight * 0.5;
-  const stage2Trigger = window.innerHeight * 1.5;
+  const scrollPosition = window.scrollY;
+  const maxScroll = window.innerHeight * 2;
+  const scrollPercent = Math.min(scrollPosition / maxScroll, 1);
   
-  // Toggle classes more efficiently
-  document.body.classList.toggle('bg-stage1', scrollY > stage1Trigger && scrollY <= stage2Trigger);
-  document.body.classList.toggle('bg-stage2', scrollY > stage2Trigger);
+  // Smooth background positioning
+  document.body.style.backgroundPosition = `0 ${scrollPercent * 100}%`;
   
-  // Update CSS variable
-  document.body.style.setProperty('--scroll-intensity', 
-    Math.min(scrollY / stage1Trigger, 1));
-  
-  // Add to the end of animateBackground()
+  // Optional: Fade out hero content gradually
   const hero = document.querySelector('.hero');
-  hero.style.opacity = 1 - (intensity * 0.3); // Fades hero slightly on scroll
+  if (hero) {
+    hero.style.opacity = 1 - (scrollPercent * 0.5);
+  }
 };
 
 // Initialize everything
