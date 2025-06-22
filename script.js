@@ -10,7 +10,7 @@ function rotateWords() {
   rotatingIndex = (rotatingIndex + 1) % rotating3DWords.length;
 }
 
-setInterval(rotateWords, 2500);
+setInterval(rotateWords, 2000);
 rotateWords(); // Initial call on load
 
 
