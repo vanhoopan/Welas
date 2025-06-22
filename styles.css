@@ -158,12 +158,12 @@ footer {
 .solution-box {
   flex: 1;
   min-width: 280px;
-  background-color: var(--light-blue);
+  background-color: transparent; /* Changed from var(--light-blue) to transparent */
   padding: 2rem;
   border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.07);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  text-align: left;
+  box-shadow: none; /* Remove the shadow if you don't want it */
+  transition: transform 0.3s ease;
+  text-align: center; /* Center the content */
 }
 
 .solution-box:hover {
@@ -226,13 +226,14 @@ footer {
 }
 
 .solution-img {
-  width: 200px;              /* Standardize width */
-  height: 200px;             /* Standardize height */
-  object-fit: contain;       /* Preserve proportions */
-  margin: 0 auto 1rem auto;  /* Center horizontally, add bottom margin */
+  width: 180px;              /* Adjust size as needed */
+  height: 180px;             /* Make equal to width for perfect circle */
+  object-fit: cover;         /* Changed from 'contain' to 'cover' for better filling */
+  margin: 0 auto 1.5rem auto;  /* Center horizontally, add bottom margin */
   display: block;            /* Needed for margin auto centering */
-  border-radius: 15px;       /* Rounded edges */
+  border-radius: 50%;        /* This makes the image circular */
   box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional: subtle shadow */
+  border: 3px solid var(--light-blue); /* Optional: light blue border */
 }
 
 
