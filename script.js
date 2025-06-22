@@ -1,11 +1,18 @@
-const rotatingWords = document.querySelectorAll('.rotating-text .word');
-let currentWordIndex = 0;
+const rotating3DWords = document.querySelectorAll('.rotating-word');
+let rotatingIndex = 0;
 
-setInterval(() => {
-  rotatingWords[currentWordIndex].classList.remove('active');
-  currentWordIndex = (currentWordIndex + 1) % rotatingWords.length;
-  rotatingWords[currentWordIndex].classList.add('active');
-}, 3000);
+function rotateWords() {
+  rotating3DWords.forEach((word, index) => {
+    word.classList.remove('show');
+  });
+
+  rotating3DWords[rotatingIndex].classList.add('show');
+  rotatingIndex = (rotatingIndex + 1) % rotating3DWords.length;
+}
+
+setInterval(rotateWords, 2500);
+rotateWords(); // Initial call on load
+
 
 
 const sections = document.querySelectorAll('.text-section');
