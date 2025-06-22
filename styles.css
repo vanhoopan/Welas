@@ -112,7 +112,19 @@ nav a:hover {
 .hero p {
   color: white;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  font-size: 2.5rem
+  font-size: 2.5rem; /* Increased from 1.2rem */
+  line-height: 1.3; /* Better spacing for larger text */
+  max-width: 800px; /* Slightly wider for better readability */
+  margin: 0 auto 2rem; /* Added bottom margin */
+  font-weight: 500; /* Slightly bolder */
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .hero p {
+    font-size: 1.5rem; /* Slightly smaller on mobile */
+    max-width: 90%; /* Better mobile fit */
+  }
 }
 
 .hero .cta-button {
