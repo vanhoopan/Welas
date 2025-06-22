@@ -54,10 +54,10 @@ nav a:hover {
 .hero {
   background: linear-gradient(to right, var(--light-blue), var(--white));
   padding: 5rem 2rem;
-  text-align: center; /* ✅ This is already good */
+  text-align: center;
   display: flex;
   flex-direction: column;
-  align-items: center; /* ✅ Helps center absolute text too */
+  align-items: center;
 }
 
 
