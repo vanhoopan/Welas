@@ -1,3 +1,13 @@
+const rotatingWords = document.querySelectorAll('.rotating-text .word');
+let currentWordIndex = 0;
+
+setInterval(() => {
+  rotatingWords[currentWordIndex].classList.remove('active');
+  currentWordIndex = (currentWordIndex + 1) % rotatingWords.length;
+  rotatingWords[currentWordIndex].classList.add('active');
+}, 3000);
+
+
 const sections = document.querySelectorAll('.text-section');
 
 const revealOnScroll = () => {
