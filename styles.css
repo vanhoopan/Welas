@@ -15,31 +15,26 @@
   font-family: 'Libre Caslon Text', serif;
 }
 
-/* Replace your body and gradient styles with this */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   color: var(--navy-blue);
   line-height: 1.6;
-  scroll-behavior: smooth;
   background: linear-gradient(
     to bottom,
     var(--white) 0%,
-    var(--white) 10%,  /* Extended white zone */
+    var(--white) 10%,
     var(--light-blue) 30%,
     var(--navy-blue) 100%
   );
   background-attachment: fixed;
   background-size: 100% 300vh;
-  min-height: 300vh;
-  transition: background-position 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: background-position;
+  min-height: 100vh;
+  transition: background-position 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   overscroll-behavior-y: contain;
 }
-
-html {
-  scroll-behavior: smooth;
-}
-
-
 
 /* ================= HEADER & NAVIGATION ================= */
 header {
@@ -75,42 +70,17 @@ nav a:hover {
 
 /* ================= HERO SECTION ================= */
 .hero {
-  /* Keep these */
   position: relative;
-  overflow: hidden;
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; /* Add this */
-  text-align: center;
   height: 100vh;
-  min-height: -webkit-fill-available; /* Fix for mobile Safari */
-  padding: 0 2rem; /* Remove top/bottom padding */
-  margin: 0; /* Reset margins */
-
-.hero * {
-  color: white;
-}
-
-.hero h2 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  font-weight: 700;
-  color: #ffffff !important;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-}
-
-.hero p {
-  font-size: 1.2rem;
-  max-width: 600px;
-  margin: 0 auto;
-  color: #333;
-  font-family: 'Inter', sans-serif;
+  min-height: -webkit-fill-available; /* Mobile Safari fix */
+  overflow: hidden;
+  margin-top: 0;
 }
 
 .hero-image {
   position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   background-image: url('welashero.png');
@@ -130,19 +100,55 @@ nav a:hover {
   align-items: center;
   text-align: center;
   padding: 2rem;
+  color: white;
+}
+
+.hero h2,
+.hero p,
+.rotating-text-3d {
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .hero .cta-button {
   background-color: transparent;
-  border: 2px solid #ffffff;
-  transition: all 0.3s ease;
-  color: #ffffff !important;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  border: 2px solid white;
+  color: white;
   margin-top: 1.5rem;
+  transition: all 0.3s ease;
 }
 
 .hero .cta-button:hover {
-  background-color: rgba(255,255,255,0.2);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ================= ROTATING TEXT ================= */
+.rotating-text-3d {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 4rem;
+  margin-bottom: 2rem;
+  position: relative;
+  font-size: 3.5rem;
+  font-weight: 700;
+  text-align: center;
+  width: 100%;
+  perspective: 1000px;
+}
+
+.rotating-word {
+  position: absolute;
+  opacity: 0;
+  transform: rotateX(90deg) translateZ(50px);
+  transition: all 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+  white-space: nowrap;
+  color: white;
+}
+
+.rotating-word.show {
+  opacity: 1;
+  transform: rotateX(0deg) translateZ(0);
 }
 
 /* ================= CONTENT SECTIONS ================= */
@@ -151,36 +157,16 @@ section.text-section {
   max-width: 1100px;
   margin: 3rem auto;
   opacity: 0;
-  transform: translateY(40px) scale(0.98);
-  transition: 
-    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transform: translateY(20px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   background-color: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(4px);
   border-radius: 12px;
-  will-change: opacity, transform;
-}
-
-section.text-section:not(.visible) {
-  pointer-events: none; /* Prevents interaction with hidden sections */
-  opacity: 0;
-  transform: translateY(40px) scale(0.98);
-  transition: 
-    opacity 0.6s cubic-bezier(0.33, 1, 0.3, 1),
-    transform 0.8s cubic-bezier(0.33, 1, 0.3, 1);
 }
 
 section.text-section.visible {
   opacity: 1;
-  transform: translateY(0) scale(1);
-  animation: pulseEnter 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  transition-delay: 0.1s;
-}
-
-@keyframes pulseEnter {
-  0% { transform: translateY(20px) scale(0.98); opacity: 0; }
-  70% { transform: translateY(-5px) scale(1.02); opacity: 1; }
-  100% { transform: translateY(0) scale(1); opacity: 1; }
+  transform: translateY(0);
 }
 
 section.text-section.blue-bg {
@@ -220,19 +206,11 @@ section.text-section p {
   border-radius: 16px;
   transition: all 0.3s ease;
   text-align: center;
-  will-change: transform;
 }
 
 .solution-box:hover {
   transform: translateY(-8px) scale(1.02);
   box-shadow: 0 16px 32px rgba(0, 0, 0, 0.1);
-}
-
-.solution-box h3 {
-  font-size: 1.35rem;
-  margin-bottom: 0.75rem;
-  color: var(--navy-blue);
-  font-weight: 700;
 }
 
 .solution-img {
@@ -252,41 +230,9 @@ section.text-section p {
   box-shadow: 0 8px 24px rgba(0, 51, 102, 0.2);
 }
 
-/* ================= ROTATING TEXT ================= */
-.rotating-text-3d {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 4rem;
-  margin-bottom: 2rem;
-  position: relative;
-  font-size: 3.5rem;
-  font-weight: 700;
-  text-align: center;
-  width: 100%;
-  perspective: 1000px;
-  color: #ffffff !important;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-}
-
-.rotating-word {
-  position: absolute;
-  opacity: 0;
-  transform: rotateX(90deg) translateZ(50px);
-  transition: all 0.6s cubic-bezier(0.65, 0, 0.35, 1);
-  white-space: nowrap;
-  color: var(--navy-blue);
-}
-
-.rotating-word.show {
-  opacity: 1;
-  transform: rotateX(0deg) translateZ(0);
-}
-
 /* ================= BUTTONS ================= */
 .cta-button {
   display: inline-block;
-  margin-top: 2rem;
   padding: 0.75rem 2rem;
   background-color: var(--navy-blue);
   color: var(--white);
@@ -295,8 +241,6 @@ section.text-section p {
   font-weight: 600;
   transition: all 0.3s;
   font-family: 'Inter', sans-serif;
-  position: relative;
-  overflow: hidden;
 }
 
 .cta-button:hover {
@@ -319,20 +263,16 @@ footer {
   text-align: center;
   font-family: 'Inter', sans-serif;
   margin-top: 4rem;
-  position: relative;
-  z-index: 20;
 }
 
 /* ================= MOBILE RESPONSIVENESS ================= */
 @media (max-width: 768px) {
   body {
-    background-attachment: scroll !important;
-    min-height: 200vh;
+    background-attachment: scroll;
   }
 
   .hero {
     padding: 6rem 1.5rem 4rem;
-    transform: none !important;
   }
 
   .hero h2 {
@@ -352,23 +292,5 @@ footer {
 
   .solution-box {
     min-width: 100%;
-  }
-}
-
-/* ================= PRINT STYLES ================= */
-@media print {
-  body {
-    background: white !important;
-    color: black !important;
-  }
-  
-  .hero, footer {
-    display: none;
-  }
-  
-  section.text-section {
-    opacity: 1 !important;
-    transform: none !important;
-    page-break-inside: avoid;
   }
 }
