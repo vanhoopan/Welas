@@ -15,35 +15,28 @@
   font-family: 'Libre Caslon Text', serif;
 }
 
+/* Replace your body and gradient styles with this */
 body {
   color: var(--navy-blue);
   line-height: 1.6;
   scroll-behavior: smooth;
-  background: var(--white);
-  min-height: 300vh;
-  transition: background 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: background;
-}
-
-/* ================= BACKGROUND STAGES ================= */
-.bg-stage1 {
   background: linear-gradient(
     to bottom,
     var(--white) 0%,
+    var(--white) 10%,  /* Extended white zone */
     var(--light-blue) 30%,
     var(--navy-blue) 100%
-  ) !important;
-  background-attachment: fixed !important;
+  );
+  background-attachment: fixed;
+  background-size: 100% 300vh;
+  min-height: 300vh;
+  transition: background-position 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: background-position;
 }
 
-.bg-stage2 {
-  background: linear-gradient(
-    to bottom,
-    var(--light-blue) 0%,
-    var(--navy-blue) 100%
-  ) !important;
-  background-attachment: fixed !important;
-}
+/* Remove .bg-stage1 and .bg-stage2 classes */
+
+
 
 /* ================= HEADER & NAVIGATION ================= */
 header {
