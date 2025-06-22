@@ -1,7 +1,7 @@
 /* ================= ROOT VARIABLES ================= */
 :root {
   --light-blue: #C4DDF2;
-  --navy-blue: #003366;
+  --navy-blue: #001a33; /* Darkened from #003366 */
   --white: #ffffff;
   --soft-blue: #F2F7FB;
   --scroll-intensity: 0;
@@ -38,7 +38,7 @@ body {
 
 /* ================= HEADER & NAVIGATION ================= */
 header {
-  background-color: var(--navy-blue);
+  background-color: var(--navy-blue); /* Now uses darker shade */
   padding: 1.2rem 2rem;
   display: flex;
   justify-content: space-between;
@@ -72,7 +72,7 @@ nav a:hover {
 .hero {
   position: relative;
   height: 100vh;
-  min-height: -webkit-fill-available; /* Mobile Safari fix */
+  min-height: -webkit-fill-available;
   overflow: hidden;
   margin-top: 0;
 }
@@ -112,23 +112,17 @@ nav a:hover {
 .hero p {
   color: white;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  font-size: 1.75rem; /* Increased from 1.2rem */
-  line-height: 1.3; /* Better spacing for larger text */
-  max-width: 800px; /* Slightly wider for better readability */
-  margin: 0 auto 2rem; /* Added bottom margin */
-  font-weight: 500; /* Slightly bolder */
+  font-size: 1.75rem;
+  line-height: 1.3;
+  max-width: 800px;
+  margin: 0 auto 2rem;
+  font-weight: 500;
   animation: fadeInUp 1s ease-out;
 }
+
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
-}
-/* Mobile responsiveness */
-@media (max-width: 768px) {
-  .hero p {
-    font-size: 1.5rem; /* Slightly smaller on mobile */
-    max-width: 90%; /* Better mobile fit */
-  }
 }
 
 .hero .cta-button {
@@ -192,7 +186,7 @@ section.text-section.visible {
 
 section.text-section.blue-bg {
   background-color: rgba(242, 247, 251, 0.95);
-  box-shadow: 0 8px 32px rgba(0, 51, 102, 0.08);
+  box-shadow: 0 8px 32px rgba(0, 26, 51, 0.08); /* Darker shadow */
 }
 
 section.text-section h2 {
@@ -241,21 +235,29 @@ section.text-section p {
   margin: 0 auto 1.5rem;
   display: block;
   border-radius: 50%;
-  box-shadow: 0 4px 16px rgba(0, 51, 102, 0.15);
+  box-shadow: 0 4px 16px rgba(0, 26, 51, 0.15); /* Darker shadow */
   border: 3px solid var(--light-blue);
   transition: all 0.3s ease;
 }
 
 .solution-box:hover .solution-img {
   transform: rotate(5deg) scale(1.05);
-  box-shadow: 0 8px 24px rgba(0, 51, 102, 0.2);
+  box-shadow: 0 8px 24px rgba(0, 26, 51, 0.2); /* Darker shadow */
+}
+
+.solution-box .cta-button.small {
+  background-color: var(--navy-blue); /* Darker button */
+}
+
+.solution-box .cta-button.small:hover {
+  background-color: #000d1a; /* Even darker hover */
 }
 
 /* ================= BUTTONS ================= */
 .cta-button {
   display: inline-block;
   padding: 0.75rem 2rem;
-  background-color: var(--navy-blue);
+  background-color: var(--navy-blue); /* Darker button */
   color: var(--white);
   text-decoration: none;
   border-radius: 8px;
@@ -265,9 +267,9 @@ section.text-section p {
 }
 
 .cta-button:hover {
-  background-color: #002244;
+  background-color: #000d1a; /* Darker hover */
   transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 51, 102, 0.2);
+  box-shadow: 0 6px 12px rgba(0, 26, 51, 0.2); /* Darker shadow */
 }
 
 .cta-button.small {
@@ -278,7 +280,7 @@ section.text-section p {
 
 /* ================= FOOTER ================= */
 footer {
-  background-color: var(--navy-blue);
+  background-color: var(--navy-blue); /* Darker footer */
   color: var(--white);
   padding: 2rem;
   text-align: center;
@@ -298,6 +300,11 @@ footer {
 
   .hero h2 {
     font-size: 2.2rem;
+  }
+
+  .hero p {
+    font-size: 1.5rem;
+    max-width: 90%;
   }
 
   .rotating-text-3d {
