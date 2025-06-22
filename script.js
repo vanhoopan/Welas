@@ -38,17 +38,22 @@ const revealOnScroll = () => {
 
 const animateBackground = () => {
   const scrollPosition = window.scrollY;
-  const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
-  const scrollPercentage = Math.min(scrollPosition / documentHeight * 1.5, 1);
+  const stage1Trigger = window.innerHeight * 0.5;
+  const stage2Trigger = window.innerHeight * 1.5;
+
+  // Remove all classes first
+  document.body.classList.remove('bg-stage1', 'bg-stage2');
   
-  document.body.style.background = `
-    linear-gradient(
-      to bottom,
-      var(--white) 0%,
-      var(--light-blue) ${scrollPercentage * 100}%,
-      var(--light-blue) 100%
-    )
-  `;
+  // Dramatic color stages
+  if (scrollPosition > stage2Trigger) {
+    document.body.classList.add('bg-stage2');
+  } else if (scrollPosition > stage1Trigger) {
+    document.body.classList.add('bg-stage1');
+  }
+  
+  // Smooth color intensity (extra drama)
+  const intensity = Math.min(scrollPosition / stage1Trigger, 1);
+  document.body.style.setProperty('--scroll-intensity', intensity);
 };
 
 // Event listeners
