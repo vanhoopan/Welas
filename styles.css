@@ -224,4 +224,12 @@ footer {
   transform: rotateX(0deg);
 }
 
+.solution-img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+  display: block;
+}
+
 
