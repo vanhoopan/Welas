@@ -114,16 +114,19 @@ section.text-section.visible {
 }
 
 section.text-section h2 {
-  font-family: 'Libre Caslon Text', serif; /* CHANGED */
+  font-family: 'Libre Caslon Text', serif;
   font-size: 2rem;
   margin-bottom: 1rem;
   font-weight: 700;
+  text-align: center; /* ✅ CENTER THE HEADER */
 }
 
 section.text-section p {
   font-family: 'Inter', sans-serif;
   font-size: 1.05rem;
+  text-align: center; /* ✅ Optional: center the paragraph too */
 }
+
 
 section.light-bg {
   background-color: var(--white);
