@@ -23,32 +23,21 @@ document.querySelectorAll('.hero-content, .hero h2, .hero p, .rotating-text-3d, 
   el.style.textShadow = '0 2px 4px rgba(0,0,0,0.3)';
 });
 
-// Enhanced Intersection Observer with fade-out
+// Replace your IntersectionObserver with this
 const sectionObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-    const target = entry.target;
-    const isAboveViewport = entry.boundingClientRect.top < 0;
-    
-    // 3. Smooth fade-out when scrolling up
-    if (!entry.isIntersecting && isAboveViewport) {
-      const viewportHeight = window.innerHeight;
-      const distanceFromTop = -entry.boundingClientRect.top;
-      const fadeOutPercent = Math.min(distanceFromTop / (viewportHeight * 0.3), 1);
-      
-      target.style.opacity = 1 - fadeOutPercent;
-      target.style.transform = `translateY(${distanceFromTop * 0.2}px) scale(${1 - (fadeOutPercent * 0.05)})`;
-    } 
-    else {
-      target.classList.toggle('visible', entry.isIntersecting);
-      if (entry.isIntersecting) {
-        target.style.opacity = 1;
-        target.style.transform = 'translateY(0) scale(1)';
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    } else {
+      // Only remove visible class if scrolled past
+      if (entry.boundingClientRect.top < 0) {
+        entry.target.classList.remove('visible');
       }
     }
   });
 }, {
-  threshold: Array.from({ length: 100 }, (_, i) => i * 0.01), // 100 checkpoints
-  rootMargin: '0px 0px -50px 0px'
+  threshold: 0.1,
+  rootMargin: '0px 0px -100px 0px'
 });
 
 // Replace your animateScroll function with:
