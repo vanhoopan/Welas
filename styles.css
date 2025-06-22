@@ -103,6 +103,7 @@ nav a:hover {
   padding: 0.5rem 1.5rem;
 }
 
+/* This is the correct way to target sections with both classes */
 section.text-section {
   padding: 4rem 2rem;
   max-width: 1100px;
@@ -110,6 +111,13 @@ section.text-section {
   opacity: 0;
   transform: translateY(40px);
   transition: all 0.8s ease-out;
+  background-color: rgba(255, 255, 255, 0.85); /* Slightly transparent white */
+  backdrop-filter: blur(2px); /* Optional subtle blur */
+}
+
+/* Specific style for blue background sections */
+section.text-section.blue-bg {
+  background-color: rgba(242, 247, 251, 0.9); /* Slightly transparent soft-blue */
 }
 
 section.text-section.visible {
