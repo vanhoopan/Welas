@@ -13,10 +13,14 @@
 }
 
 body {
-  background-color: var(--white);
   color: var(--navy-blue);
   line-height: 1.6;
   scroll-behavior: smooth;
+  background: linear-gradient(to bottom, var(--white) 0%, var(--light-blue) 100%);
+  background-attachment: fixed;
+  background-size: 100% 300vh; /* Extend the gradient further down */
+  min-height: 100vh;
+  transition: background 0.5s ease-out;
 }
 
 header {
