@@ -13,14 +13,31 @@
 }
 
 body {
+  /* Replace your current body styles with this */
   color: var(--navy-blue);
   line-height: 1.6;
   scroll-behavior: smooth;
-  background: linear-gradient(to bottom, var(--white) 0%, var(--light-blue) 100%);
-  background-attachment: fixed;
-  background-size: 100% 300vh; /* Extend the gradient further down */
-  min-height: 100vh;
-  transition: background 0.5s ease-out;
+  background: var(--white); /* Start solid white */
+  min-height: 300vh; /* Extend scroll range */
+  transition: background 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Add these new classes for dramatic stages */
+.bg-stage1 {
+  background: linear-gradient(
+    to bottom,
+    var(--white) 0%,
+    var(--light-blue) 30%,
+    var(--navy-blue) 100%
+  ) !important;
+}
+
+.bg-stage2 {
+  background: linear-gradient(
+    to bottom,
+    var(--light-blue) 0%,
+    var(--navy-blue) 100%
+  ) !important;
 }
 
 header {
