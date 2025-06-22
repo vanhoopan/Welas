@@ -228,9 +228,11 @@ footer {
 .solution-img {
   width: 200px;              /* Standardize width */
   height: 200px;             /* Standardize height */
-  object-fit: contain;      /* Preserve original proportions */
-  margin-bottom: 1rem;
-  display: block;
+  object-fit: contain;       /* Preserve proportions */
+  margin: 0 auto 1rem auto;  /* Center horizontally, add bottom margin */
+  display: block;            /* Needed for margin auto centering */
+  border-radius: 15px;       /* Rounded edges */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional: subtle shadow */
 }
 
 
