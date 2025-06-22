@@ -34,24 +34,35 @@ const animateBackground = () => {
   const maxScroll = window.innerHeight * 2;
   const scrollPercent = Math.min(scrollPosition / maxScroll, 1);
   
-  // Smooth background positioning
+  // Ultra-smooth background
   document.body.style.backgroundPosition = `0 ${scrollPercent * 100}%`;
-  
-  // Optional: Fade out hero content gradually
-  const hero = document.querySelector('.hero');
-  if (hero) {
-    hero.style.opacity = 1 - (scrollPercent * 0.5);
-  }
 };
+
+// New Intersection Observer for sections
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    entry.target.classList.toggle('visible', entry.isIntersecting);
+  });
+}, {
+  threshold: 0.15, // Triggers when 15% of section is visible
+  rootMargin: '0px 0px -100px 0px' // Bottom offset
+});
 
 // Initialize everything
 function init() {
+  // Observe all sections
+  document.querySelectorAll('.text-section').forEach(section => {
+    sectionObserver.observe(section);
+  });
+  
+  // Start animations
   rotateWords();
-  revealOnScroll();
   animateBackground();
   setInterval(rotateWords, 2000);
 }
 
 // Event listeners
-window.addEventListener('scroll', handleScroll);
+window.addEventListener('scroll', () => {
+  requestAnimationFrame(animateBackground);
+});
 window.addEventListener('load', init);
