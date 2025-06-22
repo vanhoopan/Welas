@@ -75,18 +75,17 @@ nav a:hover {
 
 /* ================= HERO SECTION ================= */
 .hero {
-  background: linear-gradient(to right, var(--light-blue), var(--white));
   padding: 8rem 2rem 5rem;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  transform: translateY(calc(var(--scroll-intensity) * -50px));
   transition: 
     opacity 0.8s cubic-bezier(0.33, 1, 0.68, 1),
     transform 0.8s cubic-bezier(0.33, 1, 0.68, 1);
   will-change: opacity, transform;
   position: relative;
+  overflow: hidden;
   z-index: 10;
   will-change: transform;
   height: 100vh; /* Full viewport height */
@@ -96,6 +95,8 @@ nav a:hover {
   font-size: 3rem;
   margin-bottom: 1rem;
   font-weight: 700;
+  color: #ffffff !important;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .hero p {
@@ -108,22 +109,38 @@ nav a:hover {
 
 .hero-image {
   position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('welashero.png'); /* Your image path */
+  background-image: url('welashero.png');
   background-size: cover;
-  z-index: 1; /* Behind content */
+  background-position: center;
+  z-index: 1;
+  filter: brightness(0.8);
 }
 
 .hero-content {
-  position: relative; /* Brings content above image */
+  position: relative;
   z-index: 2;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.hero .cta-button {
+  background-color: transparent;
+  border: 2px solid #ffffff;
+  transition: all 0.3s ease;
+  color: #ffffff !important;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  margin-top: 1.5rem;
+}
+
+.hero .cta-button:hover {
+  background-color: rgba(255,255,255,0.2);
 }
 
 /* ================= CONTENT SECTIONS ================= */
@@ -134,9 +151,8 @@ section.text-section {
   opacity: 0;
   transform: translateY(40px) scale(0.98);
   transition: 
-    opacity 0.6s cubic-bezier(0.64, 0, 0.35, 1),
-    transform 0.6s cubic-bezier(0.64, 0, 0.35, 1),
-    background-color 0.4s ease;
+    opacity 0.8s cubic-bezier(0.33, 1, 0.3, 1),
+    transform 1s cubic-bezier(0.33, 1, 0.3, 1);
   background-color: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(4px);
   border-radius: 12px;
@@ -145,6 +161,11 @@ section.text-section {
 
 section.text-section:not(.visible) {
   pointer-events: none; /* Prevents interaction with hidden sections */
+  opacity: 0;
+  transform: translateY(40px) scale(0.98);
+  transition: 
+    opacity 0.6s cubic-bezier(0.33, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.33, 1, 0.3, 1);
 }
 
 section.text-section.visible {
@@ -241,6 +262,8 @@ section.text-section p {
   text-align: center;
   width: 100%;
   perspective: 1000px;
+  color: #ffffff !important;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .rotating-word {
