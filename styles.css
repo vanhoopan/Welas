@@ -79,7 +79,8 @@ nav a:hover {
   flex-direction: column;
   align-items: center;
   transform: translateY(calc(var(--scroll-intensity) * -50px));
-  transition: transform 0.8s cubic-bezier(0.33, 1, 0.68, 1);
+  transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.33, 1, 0.68, 1);
+  will-change: opacity, transform;
   position: relative;
   z-index: 10;
   will-change: transform;
