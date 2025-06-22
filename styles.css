@@ -117,8 +117,12 @@ nav a:hover {
   max-width: 800px; /* Slightly wider for better readability */
   margin: 0 auto 2rem; /* Added bottom margin */
   font-weight: 500; /* Slightly bolder */
+  animation: fadeInUp 1s ease-out;
 }
-
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 /* Mobile responsiveness */
 @media (max-width: 768px) {
   .hero p {
