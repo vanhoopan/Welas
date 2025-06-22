@@ -51,18 +51,31 @@ const sectionObserver = new IntersectionObserver((entries) => {
   rootMargin: '0px 0px -50px 0px'
 });
 
-// Optimized scroll handler (hero stays fixed)
+// Replace your animateScroll function with:
 const animateScroll = (scrollPosition) => {
-  // Gradient scroll only
+  // 1. Gradient scroll
   const maxScroll = window.innerHeight * 2;
   const scrollPercent = Math.min(scrollPosition / maxScroll, 1);
   document.body.style.backgroundPosition = `0 ${scrollPercent * 100}%`;
   
-  // Hero content fade only (no movement)
+  // 2. Hero content fade only (no movement)
   if (heroContent) {
-    const opacity = 1 - Math.min(scrollPosition / 600, 0.7); // Slower fade
+    const opacity = 1 - Math.min(scrollPosition / 800, 0.7);
     heroContent.style.opacity = opacity;
   }
+  
+  // 3. Handle scroll-up fading for sections
+  sections.forEach(section => {
+    const rect = section.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      const visibility = Math.min(
+        1 - (window.innerHeight - rect.top) / (window.innerHeight * 0.3),
+        1
+      );
+      section.style.opacity = visibility;
+      section.style.transform = `translateY(${(1 - visibility) * 20}px) scale(${0.95 + (visibility * 0.05)})`;
+    }
+  });
 };
 
 // ====================== INITIALIZATION ======================
