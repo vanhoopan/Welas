@@ -16,49 +16,52 @@ const sections = document.querySelectorAll('.text-section');
 const heroImage = document.querySelector('.hero-image');
 const heroContent = document.querySelector('.hero-content');
 
-// Modern Intersection Observer for sections
+// 1. Remove hero movement on scroll - we'll only fade content
+// 2. Set white text for hero elements (done via CSS later)
+document.querySelectorAll('.hero-content, .hero h2, .hero p, .rotating-text-3d, .hero .cta-button').forEach(el => {
+  el.style.color = '#ffffff';
+  el.style.textShadow = '0 2px 4px rgba(0,0,0,0.3)';
+});
+
+// Enhanced Intersection Observer with fade-out
 const sectionObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-    entry.target.classList.toggle('visible', entry.isIntersecting);
+    const target = entry.target;
+    const isAboveViewport = entry.boundingClientRect.top < 0;
+    
+    // 3. Smooth fade-out when scrolling up
+    if (!entry.isIntersecting && isAboveViewport) {
+      const viewportHeight = window.innerHeight;
+      const distanceFromTop = -entry.boundingClientRect.top;
+      const fadeOutPercent = Math.min(distanceFromTop / (viewportHeight * 0.3), 1);
+      
+      target.style.opacity = 1 - fadeOutPercent;
+      target.style.transform = `translateY(${distanceFromTop * 0.2}px) scale(${1 - (fadeOutPercent * 0.05)})`;
+    } 
+    else {
+      target.classList.toggle('visible', entry.isIntersecting);
+      if (entry.isIntersecting) {
+        target.style.opacity = 1;
+        target.style.transform = 'translateY(0) scale(1)';
+      }
+    }
   });
 }, {
-  threshold: 0.15,
+  threshold: Array.from({ length: 100 }, (_, i) => i * 0.01), // 100 checkpoints
   rootMargin: '0px 0px -50px 0px'
 });
 
-// Smooth background and parallax effects
+// Optimized scroll handler (hero stays fixed)
 const animateScroll = (scrollPosition) => {
-  // 1. Gradient scroll effect
+  // Gradient scroll only
   const maxScroll = window.innerHeight * 2;
   const scrollPercent = Math.min(scrollPosition / maxScroll, 1);
   document.body.style.backgroundPosition = `0 ${scrollPercent * 100}%`;
   
-  // 2. Hero image parallax (subtle movement)
-  if (heroImage) {
-    const parallaxOffset = scrollPosition * 0.3;
-    heroImage.style.transform = `translateY(${parallaxOffset}px)`;
-  }
-  
-  // 3. Hero content fade out
+  // Hero content fade only (no movement)
   if (heroContent) {
-    const opacity = 1 - Math.min(scrollPosition / 500, 0.8);
+    const opacity = 1 - Math.min(scrollPosition / 600, 0.7); // Slower fade
     heroContent.style.opacity = opacity;
-    heroContent.style.transform = `translateY(${scrollPosition * 0.15}px)`;
-  }
-  
-  // 4. Direction-aware scroll for extra smoothness
-  const scrollDirection = scrollPosition > lastScrollPosition ? 'down' : 'up';
-  lastScrollPosition = scrollPosition;
-};
-
-// Optimized scroll handler
-const handleScroll = () => {
-  if (!ticking) {
-    window.requestAnimationFrame(() => {
-      animateScroll(window.scrollY);
-      ticking = false;
-    });
-    ticking = true;
   }
 };
 
@@ -69,29 +72,29 @@ function init() {
   setInterval(rotateWords, 2000);
   
   // Observe all sections
-  sections.forEach(section => sectionObserver.observe(section));
+  sections.forEach(section => {
+    sectionObserver.observe(section);
+    section.style.transition = 'opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)';
+  });
   
-  // Set initial hero styles
+  // Set initial styles
   if (heroContent) {
-    heroContent.style.willChange = 'opacity, transform';
-  }
-  if (heroImage) {
-    heroImage.style.willChange = 'transform';
+    heroContent.style.willChange = 'opacity';
   }
   
-  // Trigger first render
   animateScroll(window.scrollY);
 }
 
 // ====================== EVENT LISTENERS ======================
-window.addEventListener('scroll', handleScroll);
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    window.requestAnimationFrame(() => {
+      animateScroll(window.scrollY);
+      ticking = false;
+    });
+    ticking = true;
+  }
+});
+
 window.addEventListener('load', init);
 window.addEventListener('resize', () => animateScroll(window.scrollY));
-
-// ====================== POLYFILL FOR OLDER BROWSERS ======================
-// IntersectionObserver polyfill for Safari < 12.1
-if (!('IntersectionObserver' in window)) {
-  import('intersection-observer').then(() => init());
-} else {
-  init();
-}
