@@ -41,6 +41,10 @@ const animateBackground = () => {
   // Update CSS variable
   document.body.style.setProperty('--scroll-intensity', 
     Math.min(scrollY / stage1Trigger, 1));
+  
+  // Add to the end of animateBackground()
+  const hero = document.querySelector('.hero');
+  hero.style.opacity = 1 - (intensity * 0.3); // Fades hero slightly on scroll
 };
 
 // Initialize everything
