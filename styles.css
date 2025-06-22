@@ -1,28 +1,31 @@
+/* ================= ROOT VARIABLES ================= */
 :root {
   --light-blue: #C4DDF2;
   --navy-blue: #003366;
   --white: #ffffff;
   --soft-blue: #F2F7FB;
+  --scroll-intensity: 0;
 }
 
+/* ================= BASE STYLES ================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Libre Caslon Text', serif; /* CHANGED: Caslon replaces Libre Baskerville */
+  font-family: 'Libre Caslon Text', serif;
 }
 
 body {
-  /* Replace your current body styles with this */
   color: var(--navy-blue);
   line-height: 1.6;
   scroll-behavior: smooth;
-  background: var(--white); /* Start solid white */
-  min-height: 300vh; /* Extend scroll range */
+  background: var(--white);
+  min-height: 300vh;
   transition: background 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: background;
 }
 
-/* Add these new classes for dramatic stages */
+/* ================= BACKGROUND STAGES ================= */
 .bg-stage1 {
   background: linear-gradient(
     to bottom,
@@ -30,6 +33,7 @@ body {
     var(--light-blue) 30%,
     var(--navy-blue) 100%
   ) !important;
+  background-attachment: fixed !important;
 }
 
 .bg-stage2 {
@@ -38,8 +42,10 @@ body {
     var(--light-blue) 0%,
     var(--navy-blue) 100%
   ) !important;
+  background-attachment: fixed !important;
 }
 
+/* ================= HEADER & NAVIGATION ================= */
 header {
   background-color: var(--navy-blue);
   padding: 1.2rem 2rem;
@@ -55,7 +61,6 @@ header {
 header h1 {
   color: var(--white);
   font-size: 1.8rem;
-  font-family: 'Libre Caslon Text', serif; /* CHANGED */
   font-weight: 700;
 }
 
@@ -72,20 +77,24 @@ nav a:hover {
   color: var(--light-blue);
 }
 
+/* ================= HERO SECTION ================= */
 .hero {
   background: linear-gradient(to right, var(--light-blue), var(--white));
-  padding: 5rem 2rem;
+  padding: 8rem 2rem 5rem;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
+  transform: translateY(calc(var(--scroll-intensity) * -50px));
+  transition: transform 0.8s cubic-bezier(0.33, 1, 0.68, 1);
+  position: relative;
+  z-index: 10;
+  will-change: transform;
 }
-
 
 .hero h2 {
   font-size: 3rem;
   margin-bottom: 1rem;
-  font-family: 'Libre Caslon Text', serif; /* CHANGED */
   font-weight: 700;
 }
 
@@ -97,6 +106,131 @@ nav a:hover {
   font-family: 'Inter', sans-serif;
 }
 
+/* ================= CONTENT SECTIONS ================= */
+section.text-section {
+  padding: 4rem 2rem;
+  max-width: 1100px;
+  margin: 3rem auto;
+  opacity: 0;
+  transform: translateY(40px) scale(0.98);
+  transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  background-color: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(4px);
+  border-radius: 12px;
+  will-change: transform, opacity;
+}
+
+section.text-section.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  animation: pulseEnter 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes pulseEnter {
+  0% { transform: translateY(20px) scale(0.98); opacity: 0; }
+  70% { transform: translateY(-5px) scale(1.02); opacity: 1; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+section.text-section.blue-bg {
+  background-color: rgba(242, 247, 251, 0.95);
+  box-shadow: 0 8px 32px rgba(0, 51, 102, 0.08);
+}
+
+section.text-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  text-align: left;
+}
+
+section.text-section p {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.05rem;
+  text-align: left;
+  margin-bottom: 1.5rem;
+}
+
+/* ================= SOLUTIONS GRID ================= */
+.solutions-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 2rem;
+  justify-content: center;
+}
+
+.solution-box {
+  flex: 1;
+  min-width: 280px;
+  max-width: 350px;
+  background-color: transparent;
+  padding: 2rem;
+  border-radius: 16px;
+  transition: all 0.3s ease;
+  text-align: center;
+  will-change: transform;
+}
+
+.solution-box:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.1);
+}
+
+.solution-box h3 {
+  font-size: 1.35rem;
+  margin-bottom: 0.75rem;
+  color: var(--navy-blue);
+  font-weight: 700;
+}
+
+.solution-img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  margin: 0 auto 1.5rem;
+  display: block;
+  border-radius: 50%;
+  box-shadow: 0 4px 16px rgba(0, 51, 102, 0.15);
+  border: 3px solid var(--light-blue);
+  transition: all 0.3s ease;
+}
+
+.solution-box:hover .solution-img {
+  transform: rotate(5deg) scale(1.05);
+  box-shadow: 0 8px 24px rgba(0, 51, 102, 0.2);
+}
+
+/* ================= ROTATING TEXT ================= */
+.rotating-text-3d {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 4rem;
+  margin-bottom: 2rem;
+  position: relative;
+  font-size: 3.5rem;
+  font-weight: 700;
+  text-align: center;
+  width: 100%;
+  perspective: 1000px;
+}
+
+.rotating-word {
+  position: absolute;
+  opacity: 0;
+  transform: rotateX(90deg) translateZ(50px);
+  transition: all 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+  white-space: nowrap;
+  color: var(--navy-blue);
+}
+
+.rotating-word.show {
+  opacity: 1;
+  transform: rotateX(0deg) translateZ(0);
+}
+
+/* ================= BUTTONS ================= */
 .cta-button {
   display: inline-block;
   margin-top: 2rem;
@@ -106,12 +240,16 @@ nav a:hover {
   text-decoration: none;
   border-radius: 8px;
   font-weight: 600;
-  transition: background-color 0.3s;
+  transition: all 0.3s;
   font-family: 'Inter', sans-serif;
+  position: relative;
+  overflow: hidden;
 }
 
 .cta-button:hover {
   background-color: #002244;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 51, 102, 0.2);
 }
 
 .cta-button.small {
@@ -120,149 +258,64 @@ nav a:hover {
   padding: 0.5rem 1.5rem;
 }
 
-/* This is the correct way to target sections with both classes */
-section.text-section {
-  padding: 4rem 2rem;
-  max-width: 1100px;
-  margin: auto;
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 0.8s ease-out;
-  background-color: rgba(255, 255, 255, 0.85); /* Slightly transparent white */
-  backdrop-filter: blur(2px); /* Optional subtle blur */
-}
-
-/* Specific style for blue background sections */
-section.text-section.blue-bg {
-  background-color: rgba(242, 247, 251, 0.9); /* Slightly transparent soft-blue */
-}
-
-section.text-section.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-section.text-section h2 {
-  font-family: 'Libre Caslon Text', serif;
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  font-weight: 700;
-  text-align: left; /* REVERTED */
-}
-
-section.text-section p {
-  font-family: 'Inter', sans-serif;
-  font-size: 1.05rem;
-  text-align: left; /* REVERTED */
-}
-
-
-section.light-bg {
-  background-color: var(--white);
-}
-
-section.blue-bg {
-  background-color: var(--soft-blue);
-  border-radius: 16px;
-  margin: 2rem auto;
-  max-width: calc(1100px - 4rem);
-}
-
+/* ================= FOOTER ================= */
 footer {
   background-color: var(--navy-blue);
   color: var(--white);
-  padding: 1rem 2rem;
-  text-align: center;
-  font-family: 'Inter', sans-serif;
-}
-
-.solutions-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  margin-top: 2rem;
-  justify-content: space-between;
-}
-
-.solution-box {
-  flex: 1;
-  min-width: 280px;
-  background-color: transparent; /* Changed from var(--light-blue) to transparent */
   padding: 2rem;
-  border-radius: 16px;
-  box-shadow: none; /* Remove the shadow if you don't want it */
-  transition: transform 0.3s ease;
-  text-align: center; /* Center the content */
-}
-
-.solution-box:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.1);
-}
-
-.solution-box h3 {
-  font-family: 'Libre Caslon Text', serif; /* CHANGED */
-  font-size: 1.35rem;
-  margin-bottom: 0.75rem;
-  color: var(--navy-blue);
-  font-weight: 700;
-}
-
-.solution-box p {
-  font-size: 1rem;
-  font-family: 'Inter', sans-serif;
-  margin: 0 auto 1rem auto;
-  margin-bottom: 1.5rem;
-  color: var(--navy-blue);
-}
-
-.solution-box .cta-button.small {
-  margin-top: 0;
-  background-color: var(--navy-blue);
-  color: var(--white);
-}
-
-.solution-box .cta-button.small:hover {
-  background-color: #002244;
-}
-
-.rotating-text-3d {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 4rem;
-  margin-bottom: 2rem;
-  position: relative;
-  font-size: 4rem; /* same as hero h2 */
-  font-family: 'Libre Caslon Text', serif;
-  font-weight: 700;
   text-align: center;
-  width: 100%;
+  font-family: 'Inter', sans-serif;
+  margin-top: 4rem;
+  position: relative;
+  z-index: 20;
 }
 
-.rotating-word {
-  position: absolute;
-  opacity: 0;
-  transform: rotateX(90deg);
-  transition: all 0.4s ease-in-out;
-  white-space: nowrap;
-  color: var(--navy-blue);
+/* ================= MOBILE RESPONSIVENESS ================= */
+@media (max-width: 768px) {
+  body {
+    background-attachment: scroll !important;
+    min-height: 200vh;
+  }
+
+  .hero {
+    padding: 6rem 1.5rem 4rem;
+    transform: none !important;
+  }
+
+  .hero h2 {
+    font-size: 2.2rem;
+  }
+
+  .rotating-text-3d {
+    font-size: 2.5rem;
+    height: 3rem;
+  }
+
+  section.text-section {
+    padding: 3rem 1.5rem;
+    margin: 1.5rem auto;
+    backdrop-filter: blur(2px);
+  }
+
+  .solution-box {
+    min-width: 100%;
+  }
 }
 
-.rotating-word.show {
-  opacity: 1;
-  transform: rotateX(0deg);
+/* ================= PRINT STYLES ================= */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .hero, footer {
+    display: none;
+  }
+  
+  section.text-section {
+    opacity: 1 !important;
+    transform: none !important;
+    page-break-inside: avoid;
+  }
 }
-
-.solution-img {
-  width: 180px;              /* Adjust size as needed */
-  height: 180px;             /* Make equal to width for perfect circle */
-  object-fit: cover;         /* Changed from 'contain' to 'cover' for better filling */
-  margin: 0 auto 1.5rem auto;  /* Center horizontally, add bottom margin */
-  display: block;            /* Needed for margin auto centering */
-  border-radius: 50%;        /* This makes the image circular */
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional: subtle shadow */
-  border: 3px solid var(--light-blue); /* Optional: light blue border */
-}
-
-
