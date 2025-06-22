@@ -10,60 +10,47 @@ function rotateWords() {
 
 // Scroll animations
 const sections = document.querySelectorAll('.text-section');
-let isScrolling;
+let scrollTimeout;
 
 function handleScroll() {
-  // Clear any existing scroll timeout
-  window.clearTimeout(isScrolling);
-  
-  // Call animations
-  revealOnScroll();
-  animateBackground();
-  
-  // Set a timeout to debounce scroll events
-  isScrolling = setTimeout(() => {
-    // Optional: Add any post-scroll logic here
-  }, 66); // ~15fps for performance
+  // Debounce scroll events
+  window.cancelAnimationFrame(scrollTimeout);
+  scrollTimeout = window.requestAnimationFrame(() => {
+    revealOnScroll();
+    animateBackground();
+  });
 }
 
 const revealOnScroll = () => {
   const triggerBottom = window.innerHeight * 0.85;
   sections.forEach(section => {
     const rect = section.getBoundingClientRect();
-    if (rect.top < triggerBottom) {
-      section.classList.add('visible');
-    }
+    section.classList.toggle('visible', rect.top < triggerBottom);
   });
 };
 
 const animateBackground = () => {
-  const scrollPosition = window.scrollY;
+  const scrollY = window.scrollY;
   const stage1Trigger = window.innerHeight * 0.5;
   const stage2Trigger = window.innerHeight * 1.5;
-
-  // Remove all classes first
-  document.body.classList.remove('bg-stage1', 'bg-stage2');
   
-  // Dramatic color stages
-  if (scrollPosition > stage2Trigger) {
-    document.body.classList.add('bg-stage2');
-  } else if (scrollPosition > stage1Trigger) {
-    document.body.classList.add('bg-stage1');
-  }
+  // Toggle classes more efficiently
+  document.body.classList.toggle('bg-stage1', scrollY > stage1Trigger && scrollY <= stage2Trigger);
+  document.body.classList.toggle('bg-stage2', scrollY > stage2Trigger);
   
-  // Smooth color intensity (extra drama)
-  const intensity = Math.min(scrollPosition / stage1Trigger, 1);
-  document.body.style.setProperty('--scroll-intensity', intensity);
+  // Update CSS variable
+  document.body.style.setProperty('--scroll-intensity', 
+    Math.min(scrollY / stage1Trigger, 1));
 };
 
-// Event listeners
-window.addEventListener('scroll', handleScroll); // Combined scroll handler
-window.addEventListener('load', () => {
+// Initialize everything
+function init() {
   rotateWords();
   revealOnScroll();
   animateBackground();
-});
+  setInterval(rotateWords, 2000);
+}
 
-// Start rotating text
-setInterval(rotateWords, 2000);
-rotateWords(); // Initial call
+// Event listeners
+window.addEventListener('scroll', handleScroll);
+window.addEventListener('load', init);
