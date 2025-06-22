@@ -32,9 +32,12 @@ body {
   min-height: 300vh;
   transition: background-position 1.2s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: background-position;
+  overscroll-behavior-y: contain;
 }
 
-/* Remove .bg-stage1 and .bg-stage2 classes */
+html {
+  scroll-behavior: smooth;
+}
 
 
 
