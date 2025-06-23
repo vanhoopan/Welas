@@ -23,14 +23,24 @@ const sectionObserver = new IntersectionObserver((entries) => {
   rootMargin: '0px 0px -50px 0px'
 });
 
-// Hero visibility enforcement
+// Hero visibility enforcement with permanent lock
 function enforceHeroVisibility() {
-  const heroHeadings = document.querySelectorAll('.hero-main-heading, .hero-subheading');
-  heroHeadings.forEach(heading => {
-    heading.style.opacity = '1';
-    heading.style.transform = 'translateY(0)';
-    heading.style.visibility = 'visible';
-  });
+  const heroMainHeading = document.querySelector('.hero-main-heading');
+  const heroSubheading = document.querySelector('.hero-subheading');
+  
+  if (heroMainHeading) {
+    heroMainHeading.style.opacity = '1';
+    heroMainHeading.style.transform = 'translateY(0)';
+    heroMainHeading.style.visibility = 'visible';
+    heroMainHeading.style.animation = 'none'; // Remove conflicting animations
+  }
+  
+  if (heroSubheading) {
+    heroSubheading.style.opacity = '1';
+    heroSubheading.style.transform = 'translateY(0)';
+    heroSubheading.style.visibility = 'visible';
+    heroSubheading.style.animation = 'none'; // Remove conflicting animations
+  }
 }
 
 // Background gradient animation
@@ -42,7 +52,7 @@ const animateBackground = () => {
   document.body.style.backgroundPosition = `0 ${scrollPercent * 100}%`;
 };
 
-// Combined scroll handler
+// Optimized scroll handler
 const handleScroll = () => {
   if (!ticking) {
     window.requestAnimationFrame(() => {
@@ -68,8 +78,11 @@ function init() {
     hero.style.height = `${window.innerHeight * 0.8}px`;
   }
   
-  // Ensure hero headings stay visible
-  setTimeout(enforceHeroVisibility, 2000); // After all animations complete
+  // Immediately enforce hero visibility
+  enforceHeroVisibility();
+  
+  // Additional insurance for hero visibility
+  setTimeout(enforceHeroVisibility, 1000);
   
   // Initial animations
   animateBackground();
@@ -78,28 +91,28 @@ function init() {
 // ====================== EVENT LISTENERS ======================
 window.addEventListener('scroll', () => {
   handleScroll();
-  enforceHeroVisibility(); // Extra protection
 });
 
-window.addEventListener('load', init);
+window.addEventListener('load', () => {
+  init();
+  // Final enforcement after all resources load
+  setTimeout(enforceHeroVisibility, 1500);
+});
+
 window.addEventListener('resize', init);
 
 // ====================== HERO HEADING PROTECTION ======================
-// Additional protection for hero headings
 document.addEventListener('DOMContentLoaded', () => {
   const heroContent = document.querySelector('.hero-content');
   if (heroContent) {
     heroContent.style.willChange = 'transform, opacity';
   }
   
-  // Force visible state after a short delay
-  setTimeout(() => {
-    document.querySelectorAll('.hero-main-heading, .hero-subheading').forEach(el => {
-      el.style.opacity = '1';
-      el.style.transform = 'translateY(0)';
-      el.style.visibility = 'visible';
-    });
-  }, 2500);
+  // Initial enforcement
+  enforceHeroVisibility();
+  
+  // Periodic checks for extra safety
+  setInterval(enforceHeroVisibility, 3000);
 });
 
 // ====================== POLYFILLS ======================
