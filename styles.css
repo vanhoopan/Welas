@@ -162,7 +162,6 @@ nav a:hover {
   animation-delay: 0.6s;
 }
 
-
 @keyframes slideUpFadeIn {
   from {
     opacity: 0;
@@ -173,6 +172,7 @@ nav a:hover {
     transform: translateY(0);
   }
 }
+
 
 /* New keyframe to lock visibility */
 @keyframes lockVisibility {
