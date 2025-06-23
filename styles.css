@@ -102,6 +102,7 @@ nav a:hover {
   text-align: center;
   padding: 4rem 2rem;
   color: white;
+  transform-style: preserve-3d;
 }
 
 .hero h2,
@@ -151,6 +152,8 @@ nav a:hover {
     slideUpFadeIn 1s cubic-bezier(0.22, 1, 0.36, 1) forwards,
     lockVisibility 0.1s 1s forwards; /* New animation lock */
   animation-delay: 0.3s;
+  animation-fill-mode: forwards !important;
+  will-change: transform, opacity;
 }
 
 .hero-subheading {
@@ -163,6 +166,8 @@ nav a:hover {
     slideUpFadeIn 1s cubic-bezier(0.22, 1, 0.36, 1) forwards,
     lockVisibility 0.1s 1.6s forwards; /* Matches animation duration + delay */
   animation-delay: 0.6s;
+  animation-fill-mode: forwards !important;
+  will-change: transform, opacity;
 }
 
 @keyframes slideUpFadeIn {
@@ -223,6 +228,7 @@ section.text-section {
   background-color: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(4px);
   border-radius: 12px;
+  will-change: transform, opacity;
 }
 
 section.text-section.visible {
@@ -375,9 +381,9 @@ footer {
   }
 
   .hero {
-    padding: 6rem 1.5rem 4rem;
-    height: 70vh; /* Smaller reduction on mobile */
-    min-height: 400px;
+    height: auto;
+    min-height: 60vh;
+    padding: 4rem 1rem;
   }
 
   .hero h2 {
@@ -394,6 +400,10 @@ footer {
   }
   .hero-subheading {
     font-size: 1.25rem;
+  }
+  
+  .hero-content {
+    padding: 2rem 1rem !important;
   }
 
   .rotating-text-3d {
