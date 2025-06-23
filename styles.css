@@ -71,11 +71,11 @@ nav a:hover {
 /* ================= HERO SECTION ================= */
 .hero {
   position: relative;
-  height: 80vh;
+  height: 60vh;
   min-height: 500px;
   overflow: hidden;
   margin-top: 0;
-  min-height: 500px; /* Ensures it doesn't get too small */
+  min-height: 400px; /* Ensures it doesn't get too small */
 }
 
 .hero-image {
