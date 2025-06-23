@@ -152,10 +152,11 @@ nav a:hover {
 
 .hero-subheading {
   font-size: 1.75rem;
-  opacity: 0;
+  opacity: 0; /* Start hidden */
   transform: translateY(20px);
   animation: slideUpFadeIn 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   animation-delay: 0.6s;
+  animation-fill-mode: forwards; /* This keeps the final state */
 }
 
 @keyframes slideUpFadeIn {
