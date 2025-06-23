@@ -346,6 +346,16 @@ footer {
     padding: 2rem 1rem !important;
   }
 
+  .rotating-text-3d {
+    font-size: 2.5rem;
+    height: 3.5rem;
+  }
+
+  .hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+
   section.text-section {
     padding: 3rem 1.5rem;
     margin: 1.5rem auto;
