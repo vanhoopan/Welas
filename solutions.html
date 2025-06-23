@@ -133,19 +133,17 @@
 
   <script src="script.js"></script>
   <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const sections = document.querySelectorAll(".text-section");
+  window.addEventListener("DOMContentLoaded", () => {
+    const heading = document.querySelector(".hero-main-heading");
+    const subheading = document.querySelector(".hero-subheading");
 
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
-
-    sections.forEach(section => observer.observe(section));
+    // Force a reflow to restart animation
+    heading.style.display = 'none';
+    subheading.style.display = 'none';
+    requestAnimationFrame(() => {
+      heading.style.display = '';
+      subheading.style.display = '';
+    });
   });
 </script>
 
