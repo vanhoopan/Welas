@@ -1,4 +1,4 @@
-// Rotating Text Functionality
+// ====================== ROTATING TEXT ======================
 const rotating3DWords = document.querySelectorAll('.rotating-word');
 let rotatingIndex = 0;
 
@@ -8,55 +8,102 @@ function rotateWords() {
   rotatingIndex = (rotatingIndex + 1) % rotating3DWords.length;
 }
 
-// Scroll Animations
-let lastScrollPosition = 0;
+// ====================== SCROLL ANIMATIONS ======================
 const sections = document.querySelectorAll('.text-section');
-const heroContent = document.querySelector('.hero-content');
+let lastScrollPosition = 0;
+let ticking = false;
 
-// Smooth Background and Section Effects
-const animateOnScroll = () => {
+// Enhanced Intersection Observer for sections
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    entry.target.classList.toggle('visible', entry.isIntersecting);
+  });
+}, {
+  threshold: 0.15,
+  rootMargin: '0px 0px -50px 0px'
+});
+
+// Hero visibility enforcement
+function enforceHeroVisibility() {
+  const heroHeadings = document.querySelectorAll('.hero-main-heading, .hero-subheading');
+  heroHeadings.forEach(heading => {
+    heading.style.opacity = '1';
+    heading.style.transform = 'translateY(0)';
+    heading.style.visibility = 'visible';
+  });
+}
+
+// Background gradient animation
+const animateBackground = () => {
   const scrollPosition = window.scrollY;
-  
-  // 1. Background Gradient Effect
   const maxScroll = document.body.scrollHeight - window.innerHeight;
   const scrollPercent = Math.min(scrollPosition / maxScroll, 1);
+  
   document.body.style.backgroundPosition = `0 ${scrollPercent * 100}%`;
-  
-  // 2. Hero Content Fade
-  if (heroContent) {
-    const opacity = 1 - Math.min(scrollPosition / 500, 0.7);
-    heroContent.style.opacity = opacity;
-  }
-  
-  // 3. Section Animations
-  sections.forEach(section => {
-    const rect = section.getBoundingClientRect();
-    const isVisible = rect.top < window.innerHeight * 0.75;
-    section.classList.toggle('visible', isVisible);
-  });
-  
-  lastScrollPosition = scrollPosition;
 };
 
-// Initialize Everything
+// Combined scroll handler
+const handleScroll = () => {
+  if (!ticking) {
+    window.requestAnimationFrame(() => {
+      animateBackground();
+      ticking = false;
+    });
+    ticking = true;
+  }
+};
+
+// ====================== INITIALIZATION ======================
 function init() {
   // Start rotating text
   rotateWords();
   setInterval(rotateWords, 2000);
   
-  // Trigger first scroll update
-  animateOnScroll();
+  // Observe all sections
+  sections.forEach(section => sectionObserver.observe(section));
   
   // Set hero image height
   const hero = document.querySelector('.hero');
   if (hero) {
-    hero.style.height = `${window.innerHeight}px`;
+    hero.style.height = `${window.innerHeight * 0.8}px`;
   }
+  
+  // Ensure hero headings stay visible
+  setTimeout(enforceHeroVisibility, 2000); // After all animations complete
+  
+  // Initial animations
+  animateBackground();
 }
 
-// Event Listeners
+// ====================== EVENT LISTENERS ======================
 window.addEventListener('scroll', () => {
-  requestAnimationFrame(animateOnScroll);
+  handleScroll();
+  enforceHeroVisibility(); // Extra protection
 });
-window.addEventListener('resize', init);
+
 window.addEventListener('load', init);
+window.addEventListener('resize', init);
+
+// ====================== HERO HEADING PROTECTION ======================
+// Additional protection for hero headings
+document.addEventListener('DOMContentLoaded', () => {
+  const heroContent = document.querySelector('.hero-content');
+  if (heroContent) {
+    heroContent.style.willChange = 'transform, opacity';
+  }
+  
+  // Force visible state after a short delay
+  setTimeout(() => {
+    document.querySelectorAll('.hero-main-heading, .hero-subheading').forEach(el => {
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+      el.style.visibility = 'visible';
+    });
+  }, 2500);
+});
+
+// ====================== POLYFILLS ======================
+// IntersectionObserver polyfill for older browsers
+if (!('IntersectionObserver' in window)) {
+  import('intersection-observer').then(() => init());
+}
