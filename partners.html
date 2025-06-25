@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welas | Our Partners</title>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="partners-page">
+  <header>
+    <h1>Welas</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="solutions.html">Solutions</a>
+      <a href="partners.html">Partners</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-image"></div>
+    <div class="hero-content">
+      <div class="hero-heading-wrapper">
+        <h2 class="hero-main-heading">Our Trusted Partners</h2>
+        <p class="hero-subheading">Collaborating for equitable healthcare access</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="text-section light-bg">
+    <h2>Shared Values, Shared Mission</h2>
+    <p>Welas partners with organizations that believe in using technology to break down healthcare access barriers. Our collaborators include rural hospitals, nonprofit clinics, global health NGOs, and academic institutions.</p>
+  </section>
+
+  <section class="text-section blue-bg">
+    <h2>Types of Partnerships</h2>
+    <ul class="solution-features">
+      <li><strong>Hospital Collaborations:</strong> Co-developing AI tools and platforms that integrate directly with clinical workflows.</li>
+      <li><strong>Nonprofit Clinics:</strong> Providing web and data infrastructure to enhance outreach, patient care, and reporting.</li>
+      <li><strong>Health NGOs:</strong> Joint programs and grant proposals for expanding technological equity in underserved regions.</li>
+      <li><strong>Academic Institutions:</strong> Mentorship, research, and capstone collaborations to advance impact-driven innovation.</li>
+    </ul>
+  </section>
+
+  <section class="text-section light-bg">
+    <h2>Case Highlights</h2>
+    <p>Here are a few examples of the ways our partnerships have created tangible outcomes:</p>
+    <ul class="solution-features">
+      <li>📈 A rural Indonesian hospital reduced referral errors by 25% using our AI-based triage system.</li>
+      <li>🌍 An East African nonprofit increased their reach by 3x with a secure online patient portal we built.</li>
+      <li>🏫 A university capstone program deployed an early-warning system for neonatal care with our support.</li>
+    </ul>
+  </section>
+
+  <section class="text-section blue-bg">
+    <h2>Become a Partner</h2>
+    <p>If your organization is committed to healthcare equity and wants to explore a technology partnership, we’d love to hear from you.</p>
+    <a href="contact.html" class="cta-button small">Start a Conversation</a>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Welas. All rights reserved.</p>
+    <p>Compassionate technology for healthier communities</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      const heading = document.querySelector(".hero-main-heading");
+      const subheading = document.querySelector(".hero-subheading");
+
+      heading.style.display = "none";
+      subheading.style.display = "none";
+      requestAnimationFrame(() => {
+        heading.style.display = "";
+        subheading.style.display = "";
+      });
+    });
+  </script>
+</body>
+</html>
