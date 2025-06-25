@@ -326,6 +326,10 @@ footer {
   border-radius: 12px;
 }
 
+.partners-page .hero-image {
+  background-image: url('images/partnersheroimg.jpg'); /* Replace with your image path */
+}
+
 /* ================= MOBILE RESPONSIVENESS ================= */
 @media (max-width: 768px) {
   body {
