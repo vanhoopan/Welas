@@ -89,7 +89,8 @@ nav a:hover {
 }
 
 .partners-page .hero-image {
-  background-image: url('3.png'); /* change path as needed */
+  background-image: url('3.png'); 
+  background-color: red;
 }
 
 .contact-page .hero-image {
