@@ -330,6 +330,31 @@ footer {
   background-image: url('images/partnersheroimg.jpg'); /* Replace with your image path */
 }
 
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--light-blue);
+  box-shadow: 0 0 0 3px rgba(196, 221, 242, 0.5);
+  outline: none;
+}
+
+
 /* ================= MOBILE RESPONSIVENESS ================= */
 @media (max-width: 768px) {
   body {
