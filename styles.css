@@ -84,14 +84,6 @@ nav a:hover {
   filter: brightness(0.8);
 }
 
-.solutions-page .hero-image {
-  background-image: url('2.png'); /* change path as needed */
-}
-
-.contact-page .hero-image {
-  background-image: url('4.png'); /* change path as needed */
-}
-
 .hero-content {
   position: relative;
   z-index: 2;
